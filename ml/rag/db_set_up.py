@@ -1,3 +1,4 @@
+from os import path
 from pymilvus import MilvusClient, model
 from transformers import GPT2TokenizerFast
 from rag_helper import process_pdfs_in_folder
@@ -25,8 +26,5 @@ embedding_fn =  model.dense.SentenceTransformerEmbeddingFunction(
 
 tokenizer_gpt = GPT2TokenizerFast.from_pretrained("gpt2")
 
-
-process_pdfs_in_folder("./docs", client=client, embedding_fn=embedding_fn)
-
-
-
+docs_path = path.join(path.dirname(__file__), "docs")
+process_pdfs_in_folder(docs_path, client=client, embedding_fn=embedding_fn)
