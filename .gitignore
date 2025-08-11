@@ -6,6 +6,7 @@ extracted_sequence.txt
 output_sequence.txt
 .conda
 .DS_Store
+volumes/
 *.mp4
 *.csv
 *.pyc

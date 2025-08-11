@@ -24,15 +24,11 @@ Here are some of the key features of the Pedagogical Agent:
 **Other Required System Dependencies (Platform Dependent):**
 The application requires access to your system's audio and video hardware. This typically requires installing underlying libraries for PyAudio and OpenCV.
 
-*   **For Audio (PyAudio):** Often requires PortAudio. Instructions vary by OS.
-    *   **Windows:** May require downloading pre-compiled wheels or using a package manager like Chocolatey (`choco install portaudio`).
-    *   **macOS:** `brew install portaudio` (using Homebrew).
-    *   **Linux (Debian/Ubuntu):** `sudo apt-get update && sudo apt-get install portaudio19-dev`.
 *   **For Video/Audio Processing (OpenCV, pydub):** Requires FFmpeg.
     *   **Windows:** Follow [these](https://phoenixnap.com/kb/ffmpeg-windows) instructions to download and add to PATH.
     *   **macOS:** `brew install ffmpeg` (using Homebrew).
     *   **Linux (Debian/Ubuntu):** `sudo apt-get update && sudo apt-get install ffmpeg`.
-*   **For downloading numpy / other C++ based libraries:** Requires Visual Studio.
+*   **For downloading numpy / other C++ based libraries on Windows:** Requires Visual Studio.
     *   **Windows:** Download Visual Studio - Community Version and ensure it is not in preview mode. Under workloads, find Desktop Development with C++ and install the MSVC and the Windows SDK you need (10 or 11).
 
 ### Installation
@@ -43,21 +39,26 @@ The application requires access to your system's audio and video hardware. This 
     cd pedagogical-agent
     ```
 2.  **Install Docker Desktop:** If you don't have it, download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/). Ensure it's running.
+
 3.  **Install Java:** The pattern mining component requires Java. Install the latest OpenJDK or Java Runtime Environment (JRE) for your system.
+
 4.  **Install Python 3.11:** If you don't have Python 3.11, download and install it.
+    - Recommended & tested working on: python 3.11.13.
+    - `pyaudio==0.2.14` involves a prebuilt binary, which is available for 3.11.13 on Windows (and others). If no prebuilt binary is available, it tries to self-compile using `portaudio.h`, which can be installed on MacOS/Linux using `brew`/`apt` `install portaudio`.
 5.  **Create and Activate a Python Virtual Environment (Recommended):**
-    ```sh
+    ```powershell
     python -m venv .venv
+    # or use uv (recommended) or pipx. Ensure the venv is using a supported python version.
     # On Windows:
     .\.venv\Scripts\activate
     # On macOS/Linux:
     source .venv/bin/activate
     ```
-6.  **Install Python Packages:** Ensure your virtual environment is activated before running this.
+6.  **Install System Dependencies for Audio/Video:** Follow the instructions under "Prerequisites" for your specific operating system to install FFmpeg.
+7.  **Install Python Packages:** Ensure your virtual environment is activated before running this.
     ```sh
     pip install -r requirements.txt
     ```
-7.  **Install System Dependencies for Audio/Video:** Follow the instructions under "Prerequisites" for your specific operating system to install PortAudio and FFmpeg.
 8.  **Create and Configure the `.env` file:**
     *   Create a file named `.env` in the project root directory.
     *   Add your API keys:

@@ -1,4 +1,5 @@
-version: '3.8'
+# version: '3.8'
+# version is deprecated in docker compose, 2025
 
 services:
   # --- Milvus Services (Copied from ml\rag\docker-compose.yml) ---
