@@ -42,13 +42,19 @@ The application requires access to your system's audio and video hardware. This 
 
 3.  **Install Java:** The pattern mining component requires Java. Install the latest OpenJDK or Java Runtime Environment (JRE) for your system.
 
-4.  **Install Python 3.11:** If you don't have Python 3.11, download and install it.
-    - Recommended & tested working on: python 3.11.13.
-    - `pyaudio==0.2.14` involves a prebuilt binary, which is available for 3.11.13 on Windows (and others). If no prebuilt binary is available, it tries to self-compile using `portaudio.h`, which can be installed on MacOS/Linux using `brew`/`apt` `install portaudio`.
+4.  **Install `uv` or Python 3.11.13**
+    - Other versions like 3.9.x and 3.11.x may work, but installation is easier on 3.11.13.
+    - [uv](https://docs.astral.sh/uv/getting-started/installation/) allows you to use any python version _and toolchain_ just for this repository, without affecting the rest of your python setup.
+        - Windows (Powershell): `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+        - MacOS/Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+    - Note on using alternative python versions: `pyaudio==0.2.14` involves a prebuilt binary, which is available for 3.11.13 on Windows (and others). If no prebuilt binary is available, it tries to self-compile using `portaudio.h`, which can be installed on MacOS/Linux using `brew`/`apt` `install portaudio`.
 5.  **Create and Activate a Python Virtual Environment (Recommended):**
     ```powershell
+    # Using uv (allows you to use 3.11.13 just for this virtual env)
+    uv venv --python 3.11.13
+    # if you don't have any of the above
     python -m venv .venv
-    # or use uv (recommended) or pipx. Ensure the venv is using a supported python version.
+
     # On Windows:
     .\.venv\Scripts\activate
     # On macOS/Linux:
